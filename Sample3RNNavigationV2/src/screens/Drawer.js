@@ -13,6 +13,7 @@ import {
   Button
 } from 'react-native';
 const { Navigation } = require('react-native-navigation');
+import { NavigationControllerManager } from '../controller/NavigationController'
 
 type Props = {};
 export default class Drawer extends Component<Props> {
@@ -26,39 +27,36 @@ export default class Drawer extends Component<Props> {
       }
     });
 
-    Navigation.setStackRoot('MY_STACK', {
-      component: {
-        name: 'navigation.Sample3RNNavigationV2.SecondMenuPage'
-      }
-    });
+    if(NavigationControllerManager.getSharedInstance().getActiveRootComponent().componentName !== 'FirstMenuPage') {
+      Navigation.setStackRoot(NavigationControllerManager.getSharedInstance().getActiveRootComponent().componentId, {
+        component: {
+          name: 'navigation.Sample3RNNavigationV2.FirstMenuPage',
+          options: {
+            animated: true // Will animate root change same as push
+          }
+        }
+      });
+    }
   }
 
   menuClickAction2() {
-    Navigation.setRoot({
-      root: {
-        sideMenu: {
-          left: {
-            component: {
-              name: 'navigation.Sample3RNNavigationV2.Drawer',
-              passProps: {
-                text: 'This is a left side menu screen'
-              }
-            }
-          },
-          center: {
-            stack: {
-              children: [
-                {
-                  component: {
-                    name: 'navigation.Sample3RNNavigationV2.SecondMenuPage'
-                  },
-                }
-              ]
-            }
-          }
+    Navigation.mergeOptions(this.props.componentId, {
+      sideMenu: {
+        'left': {
+          visible: false
         }
       }
     });
+    if(NavigationControllerManager.getSharedInstance().getActiveRootComponent().componentName !== 'SecondMenuPage') {
+      Navigation.setStackRoot(NavigationControllerManager.getSharedInstance().getActiveRootComponent().componentId, {
+        component: {
+          name: 'navigation.Sample3RNNavigationV2.SecondMenuPage',
+          options: {
+            animated: true // Will animate root change same as push
+          }
+        }
+      });
+    }
   }
 
   render() {

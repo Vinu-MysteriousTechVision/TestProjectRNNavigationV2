@@ -13,6 +13,7 @@ import {
   Button
 } from 'react-native';
 const { Navigation } = require('react-native-navigation');
+import { NavigationControllerManager } from '../controller/NavigationController'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -27,6 +28,11 @@ export default class App extends Component<Props> {
   constructor(props) {
     super(props)
     this.state = {}
+  }
+
+  componentDidMount() {
+    console.log('componentId: ' +this.props.componentId)
+    NavigationControllerManager.getSharedInstance().setActiveRootComponentId(this.props.componentId, 'FirstMenuPage')
   }
 
   async onClickPush() {
