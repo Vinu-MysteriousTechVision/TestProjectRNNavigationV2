@@ -37,10 +37,10 @@ export default class Start {
             },
             center: {
               stack: {
+                id: 'MY_STACK',
                 children: [
                   {
                     component: {
-                      id: 'MY_STACK',
                       name: 'navigation.Sample3RNNavigationV2.FirstMenuPage'
                     },
                   }

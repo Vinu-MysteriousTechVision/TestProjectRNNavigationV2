@@ -11,14 +11,11 @@ import {
   Text,
   View
 } from 'react-native';
-import { NavigationControllerManager } from '../controller/NavigationController'
 
 type Props = {};
 export default class SecondPage extends Component<Props> {
 
-  componentDidMount() {
-    NavigationControllerManager.getSharedInstance().setActiveRootComponentId(undefined, 'SecondPage')
-  }
+  componentDidMount() {}
 
   render() {
     return (

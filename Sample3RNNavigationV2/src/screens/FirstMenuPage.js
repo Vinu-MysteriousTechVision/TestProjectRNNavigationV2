@@ -13,7 +13,6 @@ import {
   Button
 } from 'react-native';
 const { Navigation } = require('react-native-navigation');
-import { NavigationControllerManager } from '../controller/NavigationController'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -32,7 +31,6 @@ export default class App extends Component<Props> {
 
   componentDidMount() {
     console.log('componentId: ' +this.props.componentId)
-    NavigationControllerManager.getSharedInstance().setActiveRootComponentId(this.props.componentId, 'FirstMenuPage')
   }
 
   async onClickPush() {
@@ -44,6 +42,18 @@ export default class App extends Component<Props> {
             title: {
               text: 'Pushed 1'
             }
+          },
+          animations: {
+            push: {
+              content: {
+                alpha: {
+                  from: 0,
+                  to: 1,
+                  duration: 400, // Default value is 300 ms
+                  startDelay: 100, // Default value is 0
+                }
+              }
+            }
           }
         }
       }
@@ -54,13 +64,7 @@ export default class App extends Component<Props> {
     Navigation.setStackRoot(this.props.componentId, {
       component: {
         name: 'navigation.Sample3RNNavigationV2.SecondMenuPage',
-        options: {
-          topBar: {
-            title: {
-              text: 'Pushed 1'
-            }
-          }
-        }
+        options: {}
       }
     });
   }
@@ -79,7 +83,8 @@ export default class App extends Component<Props> {
           {instructions}
         </Text>
         <Button title='PushScreen' onPress={() => this.onClickPush()} />
-        <Button title='Set Root Screen' onPress={() => this.onClickReset()} />
+
+        <View style={{marginTop: 50, backgroundColor: 'gray'}}><Button  title='Set Root Screen' onPress={() => this.onClickReset()} /></View>
 
       </View>
     );
@@ -89,8 +94,7 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: 64,
     backgroundColor: '#F5FCFF',
   },
   welcome: {

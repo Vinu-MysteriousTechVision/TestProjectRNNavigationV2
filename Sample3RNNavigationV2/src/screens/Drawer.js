@@ -13,7 +13,6 @@ import {
   Button
 } from 'react-native';
 const { Navigation } = require('react-native-navigation');
-import { NavigationControllerManager } from '../controller/NavigationController'
 
 type Props = {};
 export default class Drawer extends Component<Props> {
@@ -27,16 +26,12 @@ export default class Drawer extends Component<Props> {
       }
     });
 
-    if(NavigationControllerManager.getSharedInstance().getActiveRootComponent().componentName !== 'FirstMenuPage') {
-      Navigation.setStackRoot(NavigationControllerManager.getSharedInstance().getActiveRootComponent().componentId, {
-        component: {
-          name: 'navigation.Sample3RNNavigationV2.FirstMenuPage',
-          options: {
-            animated: true // Will animate root change same as push
-          }
-        }
-      });
-    }
+    Navigation.setStackRoot('MY_STACK', {
+      component: {
+        name: 'navigation.Sample3RNNavigationV2.FirstMenuPage',
+        options: {}
+      }
+    });
   }
 
   menuClickAction2() {
@@ -47,16 +42,12 @@ export default class Drawer extends Component<Props> {
         }
       }
     });
-    if(NavigationControllerManager.getSharedInstance().getActiveRootComponent().componentName !== 'SecondMenuPage') {
-      Navigation.setStackRoot(NavigationControllerManager.getSharedInstance().getActiveRootComponent().componentId, {
-        component: {
-          name: 'navigation.Sample3RNNavigationV2.SecondMenuPage',
-          options: {
-            animated: true // Will animate root change same as push
-          }
-        }
-      });
-    }
+    Navigation.setStackRoot('MY_STACK', {
+      component: {  
+        name: 'navigation.Sample3RNNavigationV2.SecondMenuPage',
+        options: {}
+      }
+    });
   }
 
   render() {
@@ -66,8 +57,9 @@ export default class Drawer extends Component<Props> {
           Drawer!
         </Text>
         <Button title='Menu 1' onPress={() => this.menuClickAction1()} />
-        <Button title='Menu 2' onPress={() => this.menuClickAction2()} />
-
+        <View style={{marginTop: 50, backgroundColor: 'gray'}}>
+          <Button title='Menu 2' onPress={() => this.menuClickAction2()} />
+        </View>
       </View>
     );
   }

@@ -11,7 +11,6 @@ import {
   Text,
   View
 } from 'react-native';
-import { NavigationControllerManager } from '../controller/NavigationController'
 
 type Props = {};
 export default class SecondAppPage extends Component<Props> {
@@ -22,7 +21,6 @@ export default class SecondAppPage extends Component<Props> {
 
   componentDidMount() {
     console.log('componentId: ' +this.props.componentId)
-    NavigationControllerManager.getSharedInstance().setActiveRootComponentId(this.props.componentId, 'SecondMenuPage')
   }
 
   render() {
