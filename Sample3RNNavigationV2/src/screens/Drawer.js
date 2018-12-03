@@ -42,12 +42,72 @@ export default class Drawer extends Component<Props> {
         }
       }
     });
-    Navigation.setStackRoot('MY_STACK', {
-      component: {  
-        name: 'navigation.Sample3RNNavigationV2.SecondMenuPage',
-        options: {}
+
+    // Navigation.push('MY_STACK', {
+    //   component: {
+    //     name: 'navigation.Sample3RNNavigationV2.SecondMenuPage'
+    //   }
+    // });
+
+    // Navigation.setStackRoot('MY_STACK', {
+    //   component: {  
+    //     name: 'navigation.Sample3RNNavigationV2.SecondMenuPage',
+    //     options: {}
+    //   }
+    // });
+    /*
+    Navigation.setRoot({
+      root: {
+        sideMenu: {
+          left: {
+            component: {
+              name: 'navigation.Sample3RNNavigationV2.Drawer',
+              passProps: {
+                text: 'This is a left side menu screen'
+              }
+            }
+          },
+          center: {
+            bottomTabs: {
+              children: [{
+                stack: {
+                  id: 'MY_STACK',
+                  children: [{
+                    component: {
+                      name: 'navigation.Sample3RNNavigationV2.FirstMenuPage',
+                      passProps: {
+                        text: 'This is tab 1'
+                      }
+                    }
+                  }],
+                  options: {
+                    bottomTab: {
+                      text: 'Tab 1',
+                      testID: 'FIRST_TAB_BAR_BUTTON'
+                    }
+                  }
+                }
+              }]
+            }          
+          }
+        }
       }
     });
+    */
+
+    Navigation.setStackRoot('MY_STACK', {
+      component: { name: 'navigation.Sample3RNNavigationV2.FirstMenuPage' },
+      options: {
+        bottomTabs :{
+          visible: false,
+          animate: false,
+          translucent: true,
+          barStyle: 'default',
+          hideShadow: true,
+          drawBehind: true,
+        }
+      }
+    })
   }
 
   render() {

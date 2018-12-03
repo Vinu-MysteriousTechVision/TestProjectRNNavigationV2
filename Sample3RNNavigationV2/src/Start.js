@@ -36,16 +36,39 @@ export default class Start {
               }
             },
             center: {
-              stack: {
-                id: 'MY_STACK',
-                children: [
-                  {
-                    component: {
-                      name: 'navigation.Sample3RNNavigationV2.FirstMenuPage'
-                    },
+
+              bottomTabs: {
+                children: [{
+                  stack: {
+                    id: 'MY_STACK',
+                    children: [{
+                      component: {
+                        name: 'navigation.Sample3RNNavigationV2.FirstMenuPage',
+                        passProps: {
+                          text: 'This is tab 1'
+                        }
+                      }
+                    }],
+                    options: {
+                      bottomTab: {
+                        text: 'Tab 1',
+                        testID: 'FIRST_TAB_BAR_BUTTON'
+                      }
+                    }
                   }
-                ]
-              }
+                }]
+              }          
+
+              // stack: {
+              //   id: 'MY_STACK',
+              //   children: [
+              //     {
+              //       component: {
+              //         name: 'navigation.Sample3RNNavigationV2.FirstMenuPage'
+              //       },
+              //     }
+              //   ]
+              // }
             }
           }
         }
